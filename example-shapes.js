@@ -32,7 +32,7 @@ Declare_Any_Class( "Triangle",    // First, the simplest possible Shape – one 
 Declare_Any_Class( "Square",    // A square, demonstrating shared vertices.  On any planar surface, the interior edges don't make any important seams.
   { 'populate': function()      // In these cases there's no reason not to re-use values of the common vertices between triangles.  This makes all the
       {                         // vertex arrays (position, normals, etc) smaller and more cache friendly.
-         this.positions     .push( vec3(-1,-1,0), vec3(1,-1,0), vec3(-1,1,0), vec3(1,1,0) ); // Specify the 4 vertices -- the point cloud that our Square needs.
+         this.positions     .push( vec3(-.5,-.5,0), vec3(.5,-.5,0), vec3(-.5,.5,0), vec3(.5,.5,0) ); // Specify the 4 vertices -- the point cloud that our Square needs.
          this.normals       .push( vec3(0,0,1), vec3(0,0,1), vec3(0,0,1), vec3(0,0,1) );     // ...
          this.texture_coords.push( vec2(0,0),   vec2(1,0),   vec2(0,1),   vec2(1,1)   );     // ...
          this.indices       .push( 0, 1, 2,     1, 3, 2 );                                   // Two triangles this time, indexing into four distinct vertices.

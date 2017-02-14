@@ -4,6 +4,7 @@
 
 // Now go down to Example_Animation's display() function to see where the sample shapes you see drawn are coded, and a good place to begin filling in your own code.
 
+
 Declare_Any_Class( "Debug_Screen",  // Debug_Screen - An example of a displayable object that our class Canvas_Manager can manage.  Displays a text user interface.
   { 'construct': function( context )
       { this.define_data_members( { string_map: context.shared_scratchpad.string_map, start_index: 0, tick: 0, visible: false, graphicsState: new Graphics_State() } );
@@ -158,7 +159,7 @@ Declare_Any_Class( "Example_Animation",  // An example of a displayable object t
         // *** Materials: *** Declare new ones as temps when needed; they're just cheap wrappers for some numbers.
         // 1st parameter:  Color (4 floats in RGBA format), 2nd: Ambient light, 3rd: Diffuse reflectivity, 4th: Specular reflectivity, 5th: Smoothness exponent, 6th: Texture image.
         var purplePlastic = new Material( Color( .9,.5,.9,1 ), .4, .7, .8, 40 ), // Omit the final (string) parameter if you want no texture
-              texture = new Material(Color( 0,0,0,1 ), 1, 1, .4, 35, "box.png"), //change the ambient light and texture (2nd param, 6th param)
+              texture = new Material(Color( 0,0,0,1 ), 1, 1, .4, 35, "cs.jpg"), //change the ambient light and texture (2nd param, 6th param)
               greyPlastic = new Material( Color( .5,.5,.5,1 ), .4, .8, .4, 20 ),
               placeHolder = new Material( Color(0,0,0,0), 0,0,0,0, "Blank" );
 
@@ -166,32 +167,88 @@ Declare_Any_Class( "Example_Animation",  // An example of a displayable object t
         Start coding down here!!!!
         **********************************/                                     // From here on down it's just some example shapes drawn for you -- replace them with your own!
 
-        var stack = [];
-        model_transform = mult( model_transform, translation( 0, 5, 0 ) );
-        shapes_in_use.triangle       .draw( graphics_state, model_transform, purplePlastic );
 
-        model_transform = mult( model_transform, translation( 0, -2, 0 ) );
+        var stack = [];
+
         // model_transform = mult(model_transform, rotation(45, 0, 1, 0));   
+        model_transform = mult( model_transform, translation( very_left, very_bottom, 0 ) );
 
         stack.push(model_transform);
-        console.log(time/100);
+        // console.log(time/100);
         // model_transform = mult( model_transform, rotation(time/10, 0 , 1, 0));
-        model_transform = mult(model_transform, translation(time/1000, 0, 0));
-        shapes_in_use.strip          .draw( graphics_state, model_transform, texture );
+        model_transform = mult(model_transform, translation(26.6, 19.8, 0));
+        
+        shapes_in_use.strip          .draw( graphics_state, model_transform, purplePlastic );
+
+
+
         model_transform = stack.pop();
 
-        model_transform = mult( model_transform, translation( 0, -2, 0 ) );
-        shapes_in_use.tetrahedron    .draw( graphics_state, model_transform, purplePlastic );
 
-        model_transform = mult( model_transform, translation( 0, -2, 0 ) );
-        shapes_in_use.bad_tetrahedron.draw( graphics_state, model_transform, greyPlastic );
+        /**********************
+        Chemical Engineering
+        **********************/
 
-        model_transform = mult( model_transform, translation( 0, -2, 0 ) );
-        shapes_in_use.windmill       .draw( graphics_state, mult( model_transform, rotation( .7*graphics_state.animation_time, .1, .8, .1 ) ), purplePlastic );        
+        // stack.push(model_transform);
+        // model_transform = mult(model_transform, translation(0, calculateHeight(7), 0));
+        // model_transform = mult(model_transform, translation(time/1000, 0, 0));
+        // shapes_in_use.strip.draw( graphics_state, model_transform, purplePlastic );
+        // model_transform = stack.pop();
+
+        /**********************
+        Civil Engineering
+        **********************/
+
+        stack.push(model_transform);
+        model_transform = mult(model_transform, translation(0, calculateHeight(0), 0));
+        model_transform = mult(model_transform, translation(time/1000, 0, 0));
+        shapes_in_use.strip.draw( graphics_state, model_transform, purplePlastic );
+        model_transform = stack.pop();
+        /**********************
+        Computer Science
+        **********************/
+        stack.push(model_transform);
+        model_transform = mult(model_transform, translation(0, 30, 0));
+        model_transform = mult(model_transform, translation(time/1000, 0, 0));
+        shapes_in_use.strip.draw( graphics_state, model_transform, purplePlastic );
+        model_transform = stack.pop();
+        /**********************
+        Electrical Engineering
+        **********************/
+        // stack.push(model_transform);
+        // model_transform = mult(model_transform, translation(0, 6, 0));
+        // model_transform = mult(model_transform, translation(time/1000, 0, 0));
+        // shapes_in_use.strip.draw( graphics_state, model_transform, purplePlastic );
+        // model_transform = stack.pop();
+        // /**********************
+        // Mechanical Engineering
+        // **********************/
+        // stack.push(model_transform);
+        // model_transform = mult(model_transform, translation(0, 8, 0));
+        // model_transform = mult(model_transform, translation(time/1000, 0, 0));
+        // shapes_in_use.strip.draw( graphics_state, model_transform, purplePlastic );
+        // model_transform = stack.pop();
+
+        // console.log(calculateHeight(16));
+
+
         
-        shaders_in_use[ "Demo_Shader" ].activate();
-        model_transform = mult( model_transform, translation( 0, -2, 0 ) );
-        shapes_in_use.windmill       .draw( graphics_state, model_transform, placeHolder );
+
+
+
+
+
+
+
+        // model_transform = mult( model_transform, translation( 0, -2, 0 ) );
+        // shapes_in_use.tetrahedron    .draw( graphics_state, model_transform, purplePlastic );
+
+        // model_transform = mult( model_transform, translation( 0, -2, 0 ) );
+        // shapes_in_use.bad_tetrahedron.draw( graphics_state, model_transform, greyPlastic );
+
 
       }
   }, Animation );
+
+
+

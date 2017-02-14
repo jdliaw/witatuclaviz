@@ -1,3 +1,21 @@
+var very_left = -13.3;
+var very_right = 26.6;
+var very_bottom = -9.9;
+var very_top = 19.8;
+
+var total_horizontal = very_right - very_left;
+var total_vertical = very_top - very_bottom;
+
+var num_x_increments = 11;  //number of points - 1
+
+var x_increment_size = total_horizontal / num_x_increments;
+//var y_increment_size = ;      //percentage conversion --> Y position
+
+var bottom_percentage = 0;
+var top_percentage = 40;
+var percentage_difference = top_percentage - bottom_percentage;
+
+
 var chemicalEngineering = [];
 var civilEngineering = [];
 var computerScience = [];
@@ -24,3 +42,17 @@ mechanicalEngineering = mechanicalEngineering.reverse();
 // console.log(computerScience);
 // console.log(electricalEngineering);
 // console.log(mechanicalEngineering);
+
+
+function calculateHeight(percentage) {
+  var height;
+  height = percentage - bottom_percentage;          //calculate difference from very bottom
+  console.log("Percent difference", height);
+  height = height / percentage_difference           //calculate where (percentage wise) this would lie between bottom and top
+  console.log("Percent up from bottom", height);    //this works fine
+
+  height = height * very_top;                       //calculate adjusted height
+  console.log("Return value:", height);
+  return height;
+
+}
