@@ -9,6 +9,7 @@ var total_vertical = very_top - very_bottom;
 var num_x_increments = 11;  //number of points - 1
 
 var x_increment_size = total_horizontal / num_x_increments;
+var X_VALUE_INCREMENT = 2.10969010667;
 //var y_increment_size = ;      //percentage conversion --> Y position
 var increment_count = 0;
 var increments = [];
@@ -46,6 +47,10 @@ civilTotal = civilTotal.reverse();
 comSciTotal = comSciTotal.reverse();
 elecTotal = elecTotal.reverse();
 mechTotal = mechTotal.reverse();
+
+var adjustedfix = 0;
+var adjustedHeight;
+
 
 //2015 --> 2004
 chemicalEngineering = [33.4,	33.1,	29.7,	30.5,	32.4,	31.3,	33.4,	37.1, 35.6,	31.4,	29.2,	34.4];

@@ -188,7 +188,21 @@ Declare_Any_Class( "Example_Animation",  // An example of a displayable object t
         var nextYearX = nextYear * x_increment_size;
         var thisYearX = year * x_increment_size;
 
-        console.log("nextYearX: " + nextYearX + "thisYearX: " + thisYearX);
+        //console.log("nextYearX: " + nextYearX + "thisYearX: " + thisYearX);
+
+<<<<<<< 1cc545017d55fee63b9fafc2ee6e02e44a7fba38
+=======
+
+        // if(!(Math.abs(adjustedfix - adjustedHeight) > .05)) {
+        //   adjustedfix = adjustedHeight;
+        //   console.log("OMGGGGG")
+        // }
+
+
+        //console.log("Height: " + chemicalEngineering[year] + " adjustedHeight: " + adjustedHeight);
+
+        
+
 
         //model_transform = mult( model_transform, rotation(time/10, 0 , 1, 0));
         /**********************
@@ -205,6 +219,8 @@ Declare_Any_Class( "Example_Animation",  // An example of a displayable object t
         }
         scaleAmt = calculateScale(chemTotal[year]);
         model_transform = mult(model_transform, scale(scaleAmt, scaleAmt, scaleAmt));
+        adjustedHeight = (chemicalEngineering[nextYear] - chemicalEngineering[year]) * (x_position - (year * X_VALUE_INCREMENT)) / X_VALUE_INCREMENT;
+        model_transform = mult(model_transform, translation(x_position, calculateHeight(chemicalEngineering[year]+ adjustedHeight), 0));      //transform by year/percent
         shapes_in_use.strip.draw( graphics_state, model_transform, chemPlastic );
         model_transform = stack.pop();
 
@@ -223,6 +239,8 @@ Declare_Any_Class( "Example_Animation",  // An example of a displayable object t
         }
         scaleAmt = calculateScale(civilTotal[year]);
         model_transform = mult(model_transform, scale(scaleAmt, scaleAmt, scaleAmt));
+        adjustedHeight = (civilEngineering[nextYear] - civilEngineering[year]) * (x_position - (year * X_VALUE_INCREMENT)) / X_VALUE_INCREMENT;
+        model_transform = mult(model_transform, translation(x_position, calculateHeight(civilEngineering[year] + adjustedHeight), 0));      //transform by year/percent
         shapes_in_use.strip.draw( graphics_state, model_transform, civilPlastic );
         model_transform = stack.pop();
         /**********************
@@ -239,13 +257,16 @@ Declare_Any_Class( "Example_Animation",  // An example of a displayable object t
         }
         scaleAmt = calculateScale(comSciTotal[year]);
         model_transform = mult(model_transform, scale(scaleAmt, scaleAmt, scaleAmt));
+        adjustedHeight = (computerScience[nextYear] - computerScience[year]) * (x_position - (year * X_VALUE_INCREMENT)) / X_VALUE_INCREMENT;
+        model_transform = mult(model_transform, translation(x_position, calculateHeight(computerScience[year]+ adjustedHeight), 0));      //transform by year/percent
         shapes_in_use.strip.draw( graphics_state, model_transform, texture );
         model_transform = stack.pop();
         /**********************
         Electrical Engineering
         **********************/
         stack.push(model_transform);
-        model_transform = mult(model_transform, translation(x_position, calculateHeight(electricalEngineering[year]), 0));      //transform by year/percent
+        adjustedHeight = (electricalEngineering[nextYear] - electricalEngineering[year]) * (x_position - (year * X_VALUE_INCREMENT)) / X_VALUE_INCREMENT;
+        model_transform = mult(model_transform, translation(x_position, calculateHeight(electricalEngineering[year] + adjustedHeight), 0));      //transform by year/percent
         // model_transform = mult( model_transform, rotation(time*3, 0 , 1, 0));
         if (trailingPointCount < 2) {
           trailingPointCount++;
@@ -272,6 +293,8 @@ Declare_Any_Class( "Example_Animation",  // An example of a displayable object t
         }
         scaleAmt = calculateScale(mechTotal[year]);
         model_transform = mult(model_transform, scale(scaleAmt, scaleAmt, scaleAmt));
+        adjustedHeight = (mechanicalEngineering[nextYear] - mechanicalEngineering[year]) * (x_position - (year * X_VALUE_INCREMENT)) / X_VALUE_INCREMENT;
+        model_transform = mult(model_transform, translation(x_position, calculateHeight(mechanicalEngineering[year] + adjustedHeight), 0));      //transform by year/percent
         shapes_in_use.strip.draw( graphics_state, model_transform, mechPlastic );
         model_transform = stack.pop();
 
