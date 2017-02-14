@@ -166,26 +166,10 @@ Declare_Any_Class( "Example_Animation",  // An example of a displayable object t
         /**********************************
         Start coding down here!!!!
         **********************************/                                     // From here on down it's just some example shapes drawn for you -- replace them with your own!
-
-
         var stack = [];
         model_transform = mult( model_transform, translation( very_left, very_bottom, 0 ) );      //Initialize model_transform to bottom left
-        
-        var x_position = time/150;
-
-        console.log(x_position);
-
+        var x_position = time/300;
         var year = Math.floor(x_position * 1.7/ x_increment_size);// * x_increment_size / very_right *1 );
-
-        // console.log("X_POSITION", Math.floor(year));
-
-        
-
-
-
-
-        var x_increment = Math.floor(total_horizontal / num_x_increments);
-        //console.log(x_increment);
         
         //model_transform = mult( model_transform, rotation(time/10, 0 , 1, 0));
         /**********************
@@ -193,8 +177,7 @@ Declare_Any_Class( "Example_Animation",  // An example of a displayable object t
         **********************/
 
         stack.push(model_transform);
-        model_transform = mult(model_transform, translation(0, calculateHeight(chemicalEngineering[year]), 0));
-        model_transform = mult(model_transform, translation(x_position, 0, 0));
+        model_transform = mult(model_transform, translation(x_position, calculateHeight(chemicalEngineering[year]), 0));
         shapes_in_use.strip.draw( graphics_state, model_transform, purplePlastic );
         model_transform = stack.pop();
 
