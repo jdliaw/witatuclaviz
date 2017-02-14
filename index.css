@@ -30,10 +30,21 @@
   -moz-transform: rotate(-90deg);
 }
 
+.y-axis-label {
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
 .axis {
   display: inline-block;
   height: 670px;
-  margin-left: 17%;
+  margin-left: 40px;
+}
+
+.y-axis {
+  display: inline-block;
 }
 
 #regular {
