@@ -162,6 +162,10 @@ Declare_Any_Class( "Example_Animation",  // An example of a displayable object t
               texture = new Material(Color( 0,0,0,1 ), 1, 1, .4, 35, "cs.jpg"), //change the ambient light and texture (2nd param, 6th param)
               greyPlastic = new Material( Color( .5,.5,.5,1 ), .4, .8, .4, 20 ),
               placeHolder = new Material( Color(0,0,0,0), 0,0,0,0, "Blank" );
+              chemPlastic = new Material( Color( .2,.8,.5,1 ), .4, .8, .4, 20 ),
+              civilPlastic = new Material( Color( .3,.1,.2,1 ), .4, .8, .4, 20 ),
+              elecPlastic = new Material( Color( .8,.8,0,1 ), .4, .8, .4, 20 ),
+              mechPlastic = new Material( Color( .5,.5,.5,1 ), .4, .8, .4, 20 )
 
         /**********************************
         Start coding down here!!!!
@@ -177,8 +181,8 @@ Declare_Any_Class( "Example_Animation",  // An example of a displayable object t
         **********************/
 
         stack.push(model_transform);
-        model_transform = mult(model_transform, translation(x_position, calculateHeight(chemicalEngineering[year]), 0));
-        shapes_in_use.strip.draw( graphics_state, model_transform, purplePlastic );
+        model_transform = mult(model_transform, translation(x_position, calculateHeight(chemicalEngineering[year]), 0));      //transform by year/percent
+        shapes_in_use.strip.draw( graphics_state, model_transform, chemPlastic );
         model_transform = stack.pop();
 
         /**********************
@@ -186,34 +190,30 @@ Declare_Any_Class( "Example_Animation",  // An example of a displayable object t
         **********************/
 
         stack.push(model_transform);
-        model_transform = mult(model_transform, translation(25, 15, 0));
-        // model_transform = mult(model_transform, translation(time/1000, 0, 0));
-        shapes_in_use.strip.draw( graphics_state, model_transform, purplePlastic );
+        model_transform = mult(model_transform, translation(x_position, calculateHeight(civilEngineering[year]), 0));      //transform by year/percent
+        shapes_in_use.strip.draw( graphics_state, model_transform, civilPlastic );
         model_transform = stack.pop();
         /**********************
         Computer Science
         **********************/
-        // stack.push(model_transform);
-        // model_transform = mult(model_transform, translation(0, 30, 0));
-        // model_transform = mult(model_transform, translation(time/1000, 0, 0));
-        // shapes_in_use.strip.draw( graphics_state, model_transform, purplePlastic );
-        // model_transform = stack.pop();
+        stack.push(model_transform);
+        model_transform = mult(model_transform, translation(x_position, calculateHeight(computerScience[year]), 0));      //transform by year/percent
+        shapes_in_use.strip.draw( graphics_state, model_transform, texture );
+        model_transform = stack.pop();
         /**********************
         Electrical Engineering
         **********************/
-        // stack.push(model_transform);
-        // model_transform = mult(model_transform, translation(0, 6, 0));
-        // model_transform = mult(model_transform, translation(time/1000, 0, 0));
-        // shapes_in_use.strip.draw( graphics_state, model_transform, purplePlastic );
-        // model_transform = stack.pop();
+        stack.push(model_transform);
+        model_transform = mult(model_transform, translation(x_position, calculateHeight(electricalEngineering[year]), 0));      //transform by year/percent
+        shapes_in_use.strip.draw( graphics_state, model_transform, elecPlastic );
+        model_transform = stack.pop();
         // /**********************
         // Mechanical Engineering
         // **********************/
-        // stack.push(model_transform);
-        // model_transform = mult(model_transform, translation(0, 8, 0));
-        // model_transform = mult(model_transform, translation(time/1000, 0, 0));
-        // shapes_in_use.strip.draw( graphics_state, model_transform, purplePlastic );
-        // model_transform = stack.pop();
+        stack.push(model_transform);
+        model_transform = mult(model_transform, translation(x_position, calculateHeight(mechanicalEngineering[year]), 0));      //transform by year/percent
+        shapes_in_use.strip.draw( graphics_state, model_transform, mechPlastic );
+        model_transform = stack.pop();
 
         // console.log(calculateHeight(16));
 
