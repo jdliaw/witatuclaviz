@@ -51,6 +51,8 @@ mechTotal = mechTotal.reverse();
 var adjustedfix = 0;
 var adjustedHeight;
 
+var reset = false;
+
 
 //2015 --> 2004
 chemicalEngineering = [33.4,	33.1,	29.7,	30.5,	32.4,	31.3,	33.4,	37.1, 35.6,	31.4,	29.2,	34.4];
@@ -102,4 +104,8 @@ function calculateScale(num) {
   else {
     return 1.0 + percent;
   }
+}
+
+function reset() {
+  model_transform = vec4();
 }
