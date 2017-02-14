@@ -6,16 +6,18 @@
   padding: 10px 150px 20px 150px;
 }
 
-.button {
+button {
   background-color: #008CBA;
   color: white;
   padding: 10px;
-  text-align: center;
-  width: 60px;
-  margin: auto;
+  /*text-align: center;*/
+  width: 80px;
+  font-size: 13px;
+  margin-left: 45%;
+  /*margin: auto;*/
   border-radius: 5px;
-  text-decoration: none;
-  box-shadow: 0;
+  /*text-decoration: none;*/
+  /*box-shadow: 0;*/
 }
 
 .container {
@@ -130,7 +132,8 @@
 }
 
 #comsci {
- background: rgb(255,0,0);
+ /*background: rgb(255,0,0);*/
+ background: color;
 }
 
 #elec {
@@ -138,5 +141,6 @@
 }
 
 #mech {
-  background: rgb(152,153,152);
+  /*background: rgb(152,153,152);*/
+  background: rgb(255,0,0);
 }

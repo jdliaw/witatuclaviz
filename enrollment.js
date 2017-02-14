@@ -108,4 +108,10 @@ function calculateScale(num) {
 
 function reset() {
   model_transform = vec4();
+  stack = [];
+  x_position = time/300;
+  scaleAmt = 0;
+  year = Math.floor(x_position * 1.7/ x_increment_size);
+  trailing_squares = [];
+  trailing_colors = [];
 }
