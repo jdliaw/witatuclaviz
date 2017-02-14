@@ -1,0 +1,62 @@
+.title {
+  text-align: center;
+}
+
+.description {
+  padding: 10px 150px 20px 150px;
+}
+
+.container {
+  width: 100%;
+  height: 650px;
+}
+
+.graph {
+  width: 800px;
+  /*margin: auto;*/
+  display: inline-block;
+}
+
+.axis-label {
+  display: inline-block;
+  top: 0;
+  height: 600px;
+  float: top;
+}
+
+#vertical-axis {
+  /*Safari*/
+  -webkit-transform: rotate(-90deg);
+  /* Firefox */
+  -moz-transform: rotate(-90deg);
+  /*width: 600px;*/
+  /*right: 0;*/
+}
+
+.axis {
+  display: inline-block;
+  height: 600px;
+  margin-left: 11%;
+}
+
+#y-axis {
+  border-collapse: separate;
+  border-spacing: 50px;
+}
+
+.x-val {
+  margin: auto;
+  width: 800px;
+  /*padding-left: 10px;*/
+}
+
+#x-axis {
+  border-collapse: separate;
+  border-spacing: 35px;
+}
+
+#horizontal-label {
+  margin-top: 0;
+  margin-left: 50%;
+  font-weight: bold;
+}

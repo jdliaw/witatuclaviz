@@ -1,56 +1,91 @@
-<!-- UCLA's Graphics Example Code (Javascript and C++ translations available), by Garett Ridge for CS174a.
-index.html - The web page document containing the canvas (drawing surface), that launches your javascript files, and hides the vertex and fragment shader programs in some strings. //-->
 <!DOCTYPE html>
 <html>
-<head>  <meta charset="UTF-8"/>
-<script type="text/javascript" src="enrollment.js"></script>
-<script type="text/javascript" src="MV.js"                    ></script>  <!--  Javascript "include" files.  Any code in them gets executed as part of the page loading.  //-->
-<script type="text/javascript" src="tinywebgl-ucla.js"        ></script>
-<script type="text/javascript" src="example-displayables.js"  ></script>
-<script type="text/javascript" src="example-shapes.js"        ></script>
-<script type="text/javascript" src="example-shaders.js"       ></script>
-<script type="text/javascript"> "use strict"  
-  window.onload = function init()           // ********************* OUR WHOLE PROGRAM'S ENTRY POINT ********************* 
-    {	
-      var main_canvas = new Canvas_Manager( "gl-canvas", Color( 0, 0, 0, 1 ) ),    // Make the master canvas manager.  Set your background color here too.
-          g_state = main_canvas.shared_scratchpad.graphics_state;
-          
-      shaders_in_use[ "Default"     ] = new Phong_or_Gouraud_Shader( g_state );    // Put all our shader programs in the GPU.
-      shaders_in_use[ "Demo_Shader" ] = new Funny_Shader           ( g_state );
-                                                                                // IMPORTANT: -- You have to include all your new images in here:
-      texture_filenames_to_load.push( "text.png" );                             // Put all our texture images in the GPU.
-      texture_filenames_to_load.push("box.png");
-      for( var i = 0; i < texture_filenames_to_load.length; i++ ) textures_in_use[ texture_filenames_to_load[i] ] = ( new Texture( texture_filenames_to_load[i], false ) );
-      // for( var i = 0; i < texture_filenames_to_load.length; i++ ) 
-      //   // textures_in_use[ texture_filenames_to_load[i] ] = ( new Texture( texture_filenames_to_load[i], false ) );
-        // initTexture(texture_filenames_to_load[i], true);
-      main_canvas.register_display_object( new Debug_Screen     ( main_canvas ) );  // We instantiate some of our custom "Animation" subclasses and register these displayable
-      main_canvas.register_display_object( new Example_Animation( main_canvas ) );  // objects to their master "Canvas_Manager" object -- which OpenGL calls upon every time a
-      main_canvas.register_display_object( new Example_Camera   ( main_canvas ) );  // draw / keyboard / mouse event happens.
-      main_canvas.render();
-    }
+  <head>
+    <title>CS 174A Midterm Hackathon 23</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="index.css" />
+    <script type="text/javascript" src="enrollment.js"></script>
+    <script type="text/javascript" src="MV.js"                    ></script>  <!--  Javascript "include" files.  Any code in them gets executed as part of the page loading.  //-->
+    <script type="text/javascript" src="tinywebgl-ucla.js"        ></script>
+    <script type="text/javascript" src="example-displayables.js"  ></script>
+    <script type="text/javascript" src="example-shapes.js"        ></script>
+    <script type="text/javascript" src="example-shaders.js"       ></script>
+    <script type="text/javascript"> "use strict"
+      window.onload = function init()           // ********************* OUR WHOLE PROGRAM'S ENTRY POINT *********************
+        {
+          var main_canvas = new Canvas_Manager( "gl-canvas", Color( 0, 0, 0, 1 ) ),    // Make the master canvas manager.  Set your background color here too.
+              g_state = main_canvas.shared_scratchpad.graphics_state;
 
-  window.requestAnimFrame = ( function()						// Use the correct browser's version of requestAnimationFrame() when queue-ing up re-display events. 
-    { return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
-      function( callback, element) { window.setTimeout(callback, 1000/60);  };
-    })();
-</script>
-</head><body>
-<canvas id="gl-canvas" width="800" height="600"></canvas><p>
-<a href="#" onclick='document.getElementById( "instructions" ).style = "display:block"; this.style = "display:none";'> Click for instructions </a><div id="instructions" style = "display:none">
-Controlling this Graphics Object: 
-<ul><li>Animation is paused when this program starts, so first you should press ALT+a to play or pause animation. <li>
-    Press t to un-hide the heads-up-display text.  **If this doesn't do anything** then you are running your files without correctly hosting them.  You need to 
-    run cd path/to/these/files, then python -m http.server, then visit the URL localhost:8000. <li>
-    Clicking and dragging spins the scene around while the camera stays still.  If you'd like to spin around some other focal point, 
-    you can set one by flying the camera right up to a desired point and then pressing o.<li>
-		Fly the camera around the scene to adjust your vantage point using the keys w a s d to move in the plane that's along the ground, 
-		and the keys space and z to float up and down.  At any time press r to reset the camera and vantage point back to the origin. <li>
-		The f key unfreezes the camera's rotation setting so you can aim it around while flying or sitting still.  Move the mouse around away from the 
-		center of the window to steer, and press f again to stop this and to freeze the steering again.  Any roll rotation is controlled separately with the comma and period keys. <li> 
-    The keys ALT+n and ALT+g switch shading behaviors.  ALT+n directly shows you normal vectors on shapes by interpreting X,Y,Z vectors
-    as R,G,B colors.  ALT+g toggles Gouraud shading vs Smooth Phong shading with textures.<li>
-		Press up and down to cycle through a live feed of important strings and values of the program -- the code for each Displayable object includes a function where it can provide these. <li>
-		Have fun.
-</div></p></body>
+          shaders_in_use[ "Default"     ] = new Phong_or_Gouraud_Shader( g_state );    // Put all our shader programs in the GPU.
+          shaders_in_use[ "Demo_Shader" ] = new Funny_Shader           ( g_state );
+                                                                                    // IMPORTANT: -- You have to include all your new images in here:
+          texture_filenames_to_load.push( "text.png" );                             // Put all our texture images in the GPU.
+          texture_filenames_to_load.push("box.png");
+          for( var i = 0; i < texture_filenames_to_load.length; i++ ) textures_in_use[ texture_filenames_to_load[i] ] = ( new Texture( texture_filenames_to_load[i], false ) );
+          // for( var i = 0; i < texture_filenames_to_load.length; i++ )
+          //   // textures_in_use[ texture_filenames_to_load[i] ] = ( new Texture( texture_filenames_to_load[i], false ) );
+            // initTexture(texture_filenames_to_load[i], true);
+          main_canvas.register_display_object( new Debug_Screen     ( main_canvas ) );  // We instantiate some of our custom "Animation" subclasses and register these displayable
+          main_canvas.register_display_object( new Example_Animation( main_canvas ) );  // objects to their master "Canvas_Manager" object -- which OpenGL calls upon every time a
+          main_canvas.register_display_object( new Example_Camera   ( main_canvas ) );  // draw / keyboard / mouse event happens.
+          main_canvas.render();
+        }
+
+      window.requestAnimFrame = ( function()						// Use the correct browser's version of requestAnimationFrame() when queue-ing up re-display events.
+        { return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
+          function( callback, element) { window.setTimeout(callback, 1000/60);  };
+        })();
+    </script>
+  </head>
+  <body>
+    <div class="title">
+      <h1>Proportions of Women in UCLA Engineering over time</h1>
+      <p>by Brandon Liu and Jennifer Liaw</p>
+    </div>
+    <div class="description">
+      <p>This graph visualizes the percentage of women enrolled in engineering majors at UCLA over the years. The data was taken from UCLA HSSEAS website's official reports. We chose a few key majors, focused on only undergraduate enrollment, and sized the points to match the enrollment total, to compare the severity of percentages to the size of the major in general.</p>
+    </div>
+    <div class="container">
+<!--       <div class="axis-label">
+        <p id="vertical-axis">Percentage of women (%)</p>
+      </div> -->
+      <div class="axis">
+        <table id="y-axis">
+          <tr><td>40.0%</td></tr>
+          <tr><td>35.0%</td></tr>
+          <tr><td>30.0%</td></tr>
+          <tr><td>25.0%</td></tr>
+          <tr><td>20.0%</td></tr>
+          <tr><td>15.0%</td></tr>
+          <tr><td>10.0%</td></tr>
+          <tr><td>5.0%</td></tr>
+        </table>
+      </div>
+      <div class="graph">
+        <canvas id="gl-canvas" width="800" height="600">
+          Your browser doesn't support HTML5 canvas.
+        </canvas>
+      </div>
+      <div class="x-val">
+        <table id="x-axis">
+          <tr>
+            <td>2004</td>
+            <td>2005</td>
+            <td>2006</td>
+            <td>2007</td>
+            <td>2008</td>
+            <td>2009</td>
+            <td>2010</td>
+            <td>2011</td>
+            <td>2012</td>
+            <td>2013</td>
+            <td>2014</td>
+            <td>2015</td>
+          </tr>
+        </table>
+        <p id="horizontal-label">Year</p>
+      </div>
+    </div>
+
+  </body>
 </html>
