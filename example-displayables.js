@@ -179,30 +179,11 @@ Declare_Any_Class( "Example_Animation",  // An example of a displayable object t
         year = Math.floor(x_position * 1.7/ x_increment_size);// * x_increment_size / very_right *1 );
         nextYear = year + 1;
         if(year != nextYear) {
-//          console.log("Test",year);
-//          console.log("Year: " +  year + " tempyear: " + nextYear);
         }
 
         var year_percent_difference = chemicalEngineering[nextYear] - chemicalEngineering[year];
-        // console.log("Year diff: ", year_percent_difference);
         var nextYearX = nextYear * x_increment_size;
         var thisYearX = year * x_increment_size;
-
-        //console.log("nextYearX: " + nextYearX + "thisYearX: " + thisYearX);
-
-<<<<<<< 1cc545017d55fee63b9fafc2ee6e02e44a7fba38
-=======
-
-        // if(!(Math.abs(adjustedfix - adjustedHeight) > .05)) {
-        //   adjustedfix = adjustedHeight;
-        //   console.log("OMGGGGG")
-        // }
-
-
-        //console.log("Height: " + chemicalEngineering[year] + " adjustedHeight: " + adjustedHeight);
-
-        
-
 
         //model_transform = mult( model_transform, rotation(time/10, 0 , 1, 0));
         /**********************

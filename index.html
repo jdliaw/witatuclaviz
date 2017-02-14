@@ -44,6 +44,9 @@
     </div>
     <div class="description">
       <p>This graph visualizes the percentage of women enrolled in engineering majors at UCLA over the years. The data was taken from UCLA HSSEAS website's official reports. We chose a few key majors, focused on only undergraduate enrollment, and sized the points to match the enrollment total, to compare the severity of percentages to the size of the major in general.</p>
+        <div class="button">
+          Animate
+        </div>
     </div>
     <div class="container">
       <div class="axis">
@@ -94,7 +97,20 @@
           Your browser doesn't support HTML5 canvas.
         </canvas>
       </div>
-      <div class="legend">
+      <div class="legend-wrapper">
+        <div class="legend">
+          <h4>Key</h4>
+          <div class="square" id="chem"><img/></div>
+          <p>Chemical Engineering</p><br >
+          <div class="square" id="civil"><img/></div>
+          <p>Civil Engineering</p><br >
+          <div class="square" id="comsci"><img/></div>
+          <p>Computer Science</p><br >
+          <div class="square" id="elec"><img/></div>
+          <p>Electrical Engineering</p><br >
+          <div class="square" id="mech"><img/></div>
+          <p>Mechanical Engineering</p>
+        </div>
       </div>
       <div class="x-val">
         <table id="x-axis">
