@@ -169,49 +169,42 @@ Declare_Any_Class( "Example_Animation",  // An example of a displayable object t
 
 
         var stack = [];
-
-        // model_transform = mult(model_transform, rotation(45, 0, 1, 0));   
-        model_transform = mult( model_transform, translation( very_left, very_bottom, 0 ) );
-
-        stack.push(model_transform);
-        // console.log(time/100);
-        // model_transform = mult( model_transform, rotation(time/10, 0 , 1, 0));
-        model_transform = mult(model_transform, translation(26.6, 19.8, 0));
+        model_transform = mult( model_transform, translation( very_left, very_bottom, 0 ) );      //Initialize model_transform to bottom left
         
-        shapes_in_use.strip          .draw( graphics_state, model_transform, purplePlastic );
+        var year = Math.floor(time/1000 * x_increment_size / total_horizontal);
 
-
-
-        model_transform = stack.pop();
-
-
+        console.log("X_POSITION", Math.floor(year));
+        var x_increment = Math.floor(total_horizontal / num_x_increments);
+        //console.log(x_increment);
+        
+        //model_transform = mult( model_transform, rotation(time/10, 0 , 1, 0));
         /**********************
         Chemical Engineering
         **********************/
 
-        // stack.push(model_transform);
-        // model_transform = mult(model_transform, translation(0, calculateHeight(7), 0));
-        // model_transform = mult(model_transform, translation(time/1000, 0, 0));
-        // shapes_in_use.strip.draw( graphics_state, model_transform, purplePlastic );
-        // model_transform = stack.pop();
+        stack.push(model_transform);
+        model_transform = mult(model_transform, translation(0, calculateHeight(chemicalEngineering[year]), 0));
+        model_transform = mult(model_transform, translation(time/1000, 0, 0));
+        shapes_in_use.strip.draw( graphics_state, model_transform, purplePlastic );
+        model_transform = stack.pop();
 
         /**********************
         Civil Engineering
         **********************/
 
-        stack.push(model_transform);
-        model_transform = mult(model_transform, translation(0, calculateHeight(0), 0));
-        model_transform = mult(model_transform, translation(time/1000, 0, 0));
-        shapes_in_use.strip.draw( graphics_state, model_transform, purplePlastic );
-        model_transform = stack.pop();
+        // stack.push(model_transform);
+        // model_transform = mult(model_transform, translation(0, calculateHeight(0), 0));
+        // model_transform = mult(model_transform, translation(time/1000, 0, 0));
+        // shapes_in_use.strip.draw( graphics_state, model_transform, purplePlastic );
+        // model_transform = stack.pop();
         /**********************
         Computer Science
         **********************/
-        stack.push(model_transform);
-        model_transform = mult(model_transform, translation(0, 30, 0));
-        model_transform = mult(model_transform, translation(time/1000, 0, 0));
-        shapes_in_use.strip.draw( graphics_state, model_transform, purplePlastic );
-        model_transform = stack.pop();
+        // stack.push(model_transform);
+        // model_transform = mult(model_transform, translation(0, 30, 0));
+        // model_transform = mult(model_transform, translation(time/1000, 0, 0));
+        // shapes_in_use.strip.draw( graphics_state, model_transform, purplePlastic );
+        // model_transform = stack.pop();
         /**********************
         Electrical Engineering
         **********************/

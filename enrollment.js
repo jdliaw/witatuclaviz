@@ -12,7 +12,7 @@ var x_increment_size = total_horizontal / num_x_increments;
 //var y_increment_size = ;      //percentage conversion --> Y position
 
 var bottom_percentage = 0;
-var top_percentage = 40;
+var top_percentage = 45;
 var percentage_difference = top_percentage - bottom_percentage;
 
 
@@ -47,12 +47,12 @@ mechanicalEngineering = mechanicalEngineering.reverse();
 function calculateHeight(percentage) {
   var height;
   height = percentage - bottom_percentage;          //calculate difference from very bottom
-  console.log("Percent difference", height);
+  //console.log("Percent difference", height);
   height = height / percentage_difference           //calculate where (percentage wise) this would lie between bottom and top
-  console.log("Percent up from bottom", height);    //this works fine
+  //console.log("Percent up from bottom", height);    //this works fine
 
   height = height * very_top;                       //calculate adjusted height
-  console.log("Return value:", height);
-  return height;
+  //console.log("Return value:", height);
+  return height - .5;                               // -0.5 because to offet; to set the center of the cube as what we want.
 
 }
