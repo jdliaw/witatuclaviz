@@ -9,10 +9,11 @@
 .button {
   background-color: #008CBA;
   color: white;
-  padding: 20px;
+  padding: 10px;
   text-align: center;
-  width: 50px;
+  width: 60px;
   margin: auto;
+  border-radius: 5px;
 }
 
 .container {
