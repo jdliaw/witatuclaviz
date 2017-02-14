@@ -166,7 +166,7 @@ Declare_Any_Class( "Example_Animation",  // An example of a displayable object t
               chemPlastic = new Material( Color( .2,.8,.5,1 ), .4, .8, .4, 20 ),
               civilPlastic = new Material( Color( .3,.1,.2,1 ), .4, .8, .4, 20 ),
               elecPlastic = new Material( Color( .8,.8,0,1 ), .4, .8, .4, 20 ),
-              mechPlastic = new Material( Color( .5,.5,.5,1 ), .4, .8, .4, 20 )
+              mechPlastic = new Material( Color( 1,0,0,1 ), .4, .8, .4, 20 )
 
         /**********************************
         Start coding down here!!!!
