@@ -78,8 +78,8 @@ Declare_Any_Class( "Example_Camera",     // An example of a displayable object t
       },
     'update_strings': function( user_interface_string_manager )       // Strings that this displayable object (Animation) contributes to the UI:
       { var C_inv = inverse( this.graphics_state.camera_transform ), pos = mult_vec( C_inv, vec4( 0, 0, 0, 1 ) ),
-                                                                  z_axis = mult_vec( C_inv, vec4( 0, 0, 1, 0 ) );                                                                 
-        user_interface_string_manager.string_map["origin" ] = "Center of rotation: " + this.origin[0].toFixed(0) + ", " + this.origin[1].toFixed(0) + ", " + this.origin[2].toFixed(0);                                                       
+                                                                  z_axis = mult_vec( C_inv, vec4( 0, 0, 1, 0 ) );
+        user_interface_string_manager.string_map["origin" ] = "Center of rotation: " + this.origin[0].toFixed(0) + ", " + this.origin[1].toFixed(0) + ", " + this.origin[2].toFixed(0);
         user_interface_string_manager.string_map["cam_pos"] = "Cam Position: " + pos[0].toFixed(2) + ", " + pos[1].toFixed(2) + ", " + pos[2].toFixed(2);    // The below is affected by left hand rule:
         user_interface_string_manager.string_map["facing" ] = "Facing: "       + ( ( z_axis[0] > 0 ? "West " : "East ") + ( z_axis[1] > 0 ? "Down " : "Up " ) + ( z_axis[2] > 0 ? "North" : "South" ) );
       },
@@ -112,7 +112,7 @@ Declare_Any_Class( "Example_Camera",     // An example of a displayable object t
 Declare_Any_Class( "Example_Animation",  // An example of a displayable object that our class Canvas_Manager can manage.  This one draws the scene's 3D shapes.
   { 'construct': function( context )
       { this.shared_scratchpad    = context.shared_scratchpad;
-      
+
         shapes_in_use.triangle        = new Triangle();                  // At the beginning of our program, instantiate all shapes we plan to use,
         shapes_in_use.strip           = new Square();                   // each with only one instance in the graphics card's memory.
         shapes_in_use.bad_tetrahedron = new Tetrahedron( false );      // For example we'll only create one "cube" blueprint in the GPU, but we'll re-use
@@ -121,7 +121,7 @@ Declare_Any_Class( "Example_Animation",  // An example of a displayable object t
         shapes_in_use.rectangle       = new Rectangle(3, 1);
         shapes_in_use.text            = new Text_Line(20);
         //shapes_in_use.cube          = new Cube();
-        
+
         shapes_in_use.triangle_flat        = Triangle.prototype.auto_flat_shaded_version();
         shapes_in_use.strip_flat           = Square.prototype.auto_flat_shaded_version();
         shapes_in_use.bad_tetrahedron_flat = Tetrahedron.prototype.auto_flat_shaded_version( false );
@@ -174,6 +174,7 @@ Declare_Any_Class( "Example_Animation",  // An example of a displayable object t
         var stack = [];
         model_transform = mult( model_transform, translation( very_left, very_bottom, 0 ) );      //Initialize model_transform to bottom left
         var x_position = time/300;
+        var scaleAmt = 0;
         year = Math.floor(x_position * 1.7/ x_increment_size);// * x_increment_size / very_right *1 );
         nextYear = year + 1;
         if(year != nextYear) {
@@ -188,10 +189,6 @@ Declare_Any_Class( "Example_Animation",  // An example of a displayable object t
 
         console.log("nextYearX: " + nextYearX + "thisYearX: " + thisYearX);
 
-
-        
-
-
         //model_transform = mult( model_transform, rotation(time/10, 0 , 1, 0));
         /**********************
         Chemical Engineering
@@ -199,6 +196,8 @@ Declare_Any_Class( "Example_Animation",  // An example of a displayable object t
 
         stack.push(model_transform);
         model_transform = mult(model_transform, translation(x_position, calculateHeight(chemicalEngineering[year]), 0));      //transform by year/percent
+        scaleAmt = calculateScale(chemTotal[year]);
+        model_transform = mult(model_transform, scale(scaleAmt, scaleAmt, scaleAmt));
         shapes_in_use.strip.draw( graphics_state, model_transform, chemPlastic );
         model_transform = stack.pop();
 
@@ -208,6 +207,8 @@ Declare_Any_Class( "Example_Animation",  // An example of a displayable object t
 
         stack.push(model_transform);
         model_transform = mult(model_transform, translation(x_position, calculateHeight(civilEngineering[year]), 0));      //transform by year/percent
+        scaleAmt = calculateScale(civilTotal[year]);
+        model_transform = mult(model_transform, scale(scaleAmt, scaleAmt, scaleAmt));
         shapes_in_use.strip.draw( graphics_state, model_transform, civilPlastic );
         model_transform = stack.pop();
         /**********************
@@ -215,6 +216,8 @@ Declare_Any_Class( "Example_Animation",  // An example of a displayable object t
         **********************/
         stack.push(model_transform);
         model_transform = mult(model_transform, translation(x_position, calculateHeight(computerScience[year]), 0));      //transform by year/percent
+        scaleAmt = calculateScale(comSciTotal[year]);
+        model_transform = mult(model_transform, scale(scaleAmt, scaleAmt, scaleAmt));
         shapes_in_use.strip.draw( graphics_state, model_transform, texture );
         model_transform = stack.pop();
         /**********************
@@ -223,6 +226,8 @@ Declare_Any_Class( "Example_Animation",  // An example of a displayable object t
         stack.push(model_transform);
         model_transform = mult(model_transform, translation(x_position, calculateHeight(electricalEngineering[year]), 0));      //transform by year/percent
         // model_transform = mult( model_transform, rotation(time*3, 0 , 1, 0));
+        scaleAmt = calculateScale(elecTotal[year]);
+        model_transform = mult(model_transform, scale(scaleAmt, scaleAmt, scaleAmt));
         shapes_in_use.strip.draw( graphics_state, model_transform, elecPlastic );
         model_transform = stack.pop();
         // /**********************
@@ -230,18 +235,12 @@ Declare_Any_Class( "Example_Animation",  // An example of a displayable object t
         // **********************/
         stack.push(model_transform);
         model_transform = mult(model_transform, translation(x_position, calculateHeight(mechanicalEngineering[year]), 0));      //transform by year/percent
+        scaleAmt = calculateScale(mechTotal[year]);
+        model_transform = mult(model_transform, scale(scaleAmt, scaleAmt, scaleAmt));
         shapes_in_use.strip.draw( graphics_state, model_transform, mechPlastic );
         model_transform = stack.pop();
 
         // console.log(calculateHeight(16));
-
-
-        
-
-
-
-
-
 
 
         // model_transform = mult( model_transform, translation( 0, -2, 0 ) );

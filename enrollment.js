@@ -30,6 +30,19 @@ var mechanicalEngineering = [];
 var year;
 var nextyear;
 
+/** Total count of students per major */
+chemTotal = [332, 311, 344, 347, 358, 367, 368, 383, 374, 280, 264, 224];
+civilTotal = [289, 310, 351, 379, 382, 395, 402, 361, 302, 255, 248, 242];
+comSciTotal = [563, 486, 433, 408, 287, 314, 294, 274, 253, 220, 225, 265];
+elecTotal = [565, 684, 682, 724, 759, 730, 758, 660, 565, 477, 497, 612];
+mechTotal = [494, 414, 389, 391, 424, 466, 489, 509, 495, 386, 362, 369];
+// 2004 -> 2015
+chemTotal = chemTotal.reverse();
+civilTotal = civilTotal.reverse();
+comSciTotal = comSciTotal.reverse();
+elecTotal = elecTotal.reverse();
+mechTotal = mechTotal.reverse();
+
 //2015 --> 2004
 chemicalEngineering = [33.4,	33.1,	29.7,	30.5,	32.4,	31.3,	33.4,	37.1, 35.6,	31.4,	29.2,	34.4];
 civilEngineering = [36,	33.9,	33.3,	35.8,	35.1,	33.9,	33.1,	29.9,	33.1,	29,	30.2,	31];
@@ -63,4 +76,21 @@ function calculateHeight(percentage) {
   //console.log("Return value:", height);
   return height - .5;                               // -0.5 because to offet; to set the center of the cube as what we want.
 
+}
+
+function calculateScale(num) {
+  // average total enrollment = 400 per major
+  var avg = 400;
+  var diff = num - avg;
+  var small = false;
+  if (diff < 0)
+    small = true;
+  var percent = diff / avg;
+
+  if (small) {
+    return 1.0 - percent;
+  }
+  else {
+    return 1.0 + percent;
+  }
 }

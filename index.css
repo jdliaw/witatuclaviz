@@ -35,12 +35,13 @@
   display: inline-block;
   vertical-align: middle;
   margin-right: 10px;
+  font-weight: bold;
 }
 
 .axis {
   display: inline-block;
   height: 670px;
-  margin-left: 40px;
+  margin-left: 45px;
 }
 
 .y-axis {
