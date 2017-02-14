@@ -30,6 +30,10 @@ var mechanicalEngineering = [];
 var year;
 var nextyear;
 
+var trailing_squares = []; // to create a line behind squares as they move
+var trailing_colors = []; // colors corresponding to points in trailing_squares
+var trailingPointCount = 0; // helper var to get rid of starting points
+
 /** Total count of students per major */
 chemTotal = [332, 311, 344, 347, 358, 367, 368, 383, 374, 280, 264, 224];
 civilTotal = [289, 310, 351, 379, 382, 395, 402, 361, 302, 255, 248, 242];

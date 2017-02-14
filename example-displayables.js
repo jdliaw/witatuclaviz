@@ -171,6 +171,7 @@ Declare_Any_Class( "Example_Animation",  // An example of a displayable object t
         /**********************************
         Start coding down here!!!!
         **********************************/                                     // From here on down it's just some example shapes drawn for you -- replace them with your own!
+        var static_point = vec4(); // used to draw the "lines"
         var stack = [];
         model_transform = mult( model_transform, translation( very_left, very_bottom, 0 ) );      //Initialize model_transform to bottom left
         var x_position = time/300;
@@ -193,9 +194,15 @@ Declare_Any_Class( "Example_Animation",  // An example of a displayable object t
         /**********************
         Chemical Engineering
         **********************/
-
         stack.push(model_transform);
         model_transform = mult(model_transform, translation(x_position, calculateHeight(chemicalEngineering[year]), 0));      //transform by year/percent
+        if (trailingPointCount < 2) {
+          trailingPointCount++;
+        }
+        else {
+          trailing_squares.push(model_transform); // add to collection of points to draw as squares move
+          trailing_colors.push(chemPlastic);
+        }
         scaleAmt = calculateScale(chemTotal[year]);
         model_transform = mult(model_transform, scale(scaleAmt, scaleAmt, scaleAmt));
         shapes_in_use.strip.draw( graphics_state, model_transform, chemPlastic );
@@ -207,6 +214,13 @@ Declare_Any_Class( "Example_Animation",  // An example of a displayable object t
 
         stack.push(model_transform);
         model_transform = mult(model_transform, translation(x_position, calculateHeight(civilEngineering[year]), 0));      //transform by year/percent
+        if (trailingPointCount < 2) {
+          trailingPointCount++;
+        }
+        else {
+          trailing_squares.push(model_transform);
+          trailing_colors.push(civilPlastic);
+        }
         scaleAmt = calculateScale(civilTotal[year]);
         model_transform = mult(model_transform, scale(scaleAmt, scaleAmt, scaleAmt));
         shapes_in_use.strip.draw( graphics_state, model_transform, civilPlastic );
@@ -216,6 +230,13 @@ Declare_Any_Class( "Example_Animation",  // An example of a displayable object t
         **********************/
         stack.push(model_transform);
         model_transform = mult(model_transform, translation(x_position, calculateHeight(computerScience[year]), 0));      //transform by year/percent
+        if (trailingPointCount < 2) {
+          trailingPointCount++;
+        }
+        else {
+          trailing_squares.push(model_transform);
+          trailing_colors.push(texture);
+        }
         scaleAmt = calculateScale(comSciTotal[year]);
         model_transform = mult(model_transform, scale(scaleAmt, scaleAmt, scaleAmt));
         shapes_in_use.strip.draw( graphics_state, model_transform, texture );
@@ -226,6 +247,13 @@ Declare_Any_Class( "Example_Animation",  // An example of a displayable object t
         stack.push(model_transform);
         model_transform = mult(model_transform, translation(x_position, calculateHeight(electricalEngineering[year]), 0));      //transform by year/percent
         // model_transform = mult( model_transform, rotation(time*3, 0 , 1, 0));
+        if (trailingPointCount < 2) {
+          trailingPointCount++;
+        }
+        else {
+          trailing_squares.push(model_transform);
+          trailing_colors.push(elecPlastic);
+        }
         scaleAmt = calculateScale(elecTotal[year]);
         model_transform = mult(model_transform, scale(scaleAmt, scaleAmt, scaleAmt));
         shapes_in_use.strip.draw( graphics_state, model_transform, elecPlastic );
@@ -235,10 +263,24 @@ Declare_Any_Class( "Example_Animation",  // An example of a displayable object t
         // **********************/
         stack.push(model_transform);
         model_transform = mult(model_transform, translation(x_position, calculateHeight(mechanicalEngineering[year]), 0));      //transform by year/percent
+        if (trailingPointCount < 2) {
+          trailingPointCount++;
+        }
+        else {
+          trailing_squares.push(model_transform);
+          trailing_colors.push(mechPlastic);
+        }
         scaleAmt = calculateScale(mechTotal[year]);
         model_transform = mult(model_transform, scale(scaleAmt, scaleAmt, scaleAmt));
         shapes_in_use.strip.draw( graphics_state, model_transform, mechPlastic );
         model_transform = stack.pop();
+
+
+        // draw trailing tiny squares to create a line
+        for (var i = 0; i < trailing_squares.length; i++) {
+          static_point = mult(trailing_squares[i], scale(0.1, 0.1, 0.1));
+          shapes_in_use.strip.draw(graphics_state, static_point, trailing_colors[i]);
+        }
 
         // console.log(calculateHeight(16));
 
