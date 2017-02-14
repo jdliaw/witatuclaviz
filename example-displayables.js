@@ -159,9 +159,10 @@ Declare_Any_Class( "Example_Animation",  // An example of a displayable object t
         // *** Materials: *** Declare new ones as temps when needed; they're just cheap wrappers for some numbers.
         // 1st parameter:  Color (4 floats in RGBA format), 2nd: Ambient light, 3rd: Diffuse reflectivity, 4th: Specular reflectivity, 5th: Smoothness exponent, 6th: Texture image.
         var purplePlastic = new Material( Color( .9,.5,.9,1 ), .4, .7, .8, 40 ), // Omit the final (string) parameter if you want no texture
-              texture = new Material(Color( 0,0,0,1 ), 1, 1, .4, 35, "cs.jpg"), //change the ambient light and texture (2nd param, 6th param)
               greyPlastic = new Material( Color( .5,.5,.5,1 ), .4, .8, .4, 20 ),
               placeHolder = new Material( Color(0,0,0,0), 0,0,0,0, "Blank" );
+
+              texture = new Material(Color( 0,0,0,1 ), 1, 1, .4, 35, "cs.jpg"), //change the ambient light and texture (2nd param, 6th param)
               chemPlastic = new Material( Color( .2,.8,.5,1 ), .4, .8, .4, 20 ),
               civilPlastic = new Material( Color( .3,.1,.2,1 ), .4, .8, .4, 20 ),
               elecPlastic = new Material( Color( .8,.8,0,1 ), .4, .8, .4, 20 ),
@@ -173,8 +174,24 @@ Declare_Any_Class( "Example_Animation",  // An example of a displayable object t
         var stack = [];
         model_transform = mult( model_transform, translation( very_left, very_bottom, 0 ) );      //Initialize model_transform to bottom left
         var x_position = time/300;
-        var year = Math.floor(x_position * 1.7/ x_increment_size);// * x_increment_size / very_right *1 );
+        year = Math.floor(x_position * 1.7/ x_increment_size);// * x_increment_size / very_right *1 );
+        nextYear = year + 1;
+        if(year != nextYear) {
+//          console.log("Test",year);
+//          console.log("Year: " +  year + " tempyear: " + nextYear);
+        }
+
+        var year_percent_difference = chemicalEngineering[nextYear] - chemicalEngineering[year];
+        // console.log("Year diff: ", year_percent_difference);
+        var nextYearX = nextYear * x_increment_size;
+        var thisYearX = year * x_increment_size;
+
+        console.log("nextYearX: " + nextYearX + "thisYearX: " + thisYearX);
+
+
         
+
+
         //model_transform = mult( model_transform, rotation(time/10, 0 , 1, 0));
         /**********************
         Chemical Engineering
@@ -205,6 +222,7 @@ Declare_Any_Class( "Example_Animation",  // An example of a displayable object t
         **********************/
         stack.push(model_transform);
         model_transform = mult(model_transform, translation(x_position, calculateHeight(electricalEngineering[year]), 0));      //transform by year/percent
+        // model_transform = mult( model_transform, rotation(time*3, 0 , 1, 0));
         shapes_in_use.strip.draw( graphics_state, model_transform, elecPlastic );
         model_transform = stack.pop();
         // /**********************

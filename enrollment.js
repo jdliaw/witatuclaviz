@@ -27,6 +27,9 @@ var computerScience = [];
 var electricalEngineering = [];
 var mechanicalEngineering = [];
 
+var year;
+var nextyear;
+
 //2015 --> 2004
 chemicalEngineering = [33.4,	33.1,	29.7,	30.5,	32.4,	31.3,	33.4,	37.1, 35.6,	31.4,	29.2,	34.4];
 civilEngineering = [36,	33.9,	33.3,	35.8,	35.1,	33.9,	33.1,	29.9,	33.1,	29,	30.2,	31];
