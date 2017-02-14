@@ -10,6 +10,11 @@ var num_x_increments = 11;  //number of points - 1
 
 var x_increment_size = total_horizontal / num_x_increments;
 //var y_increment_size = ;      //percentage conversion --> Y position
+var increment_count = 0;
+var increments = [];
+for(var i = 0; i < num_x_increments; i++) {
+  increments.push(very_right / num_x_increments);
+}
 
 var bottom_percentage = 0;
 var top_percentage = 45;

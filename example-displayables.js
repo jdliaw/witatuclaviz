@@ -171,9 +171,19 @@ Declare_Any_Class( "Example_Animation",  // An example of a displayable object t
         var stack = [];
         model_transform = mult( model_transform, translation( very_left, very_bottom, 0 ) );      //Initialize model_transform to bottom left
         
-        var year = Math.floor(time/1000 * x_increment_size / total_horizontal);
+        var x_position = time/150;
 
-        console.log("X_POSITION", Math.floor(year));
+        console.log(x_position);
+
+        var year = Math.floor(x_position * 1.7/ x_increment_size);// * x_increment_size / very_right *1 );
+
+        // console.log("X_POSITION", Math.floor(year));
+
+        
+
+
+
+
         var x_increment = Math.floor(total_horizontal / num_x_increments);
         //console.log(x_increment);
         
@@ -184,7 +194,7 @@ Declare_Any_Class( "Example_Animation",  // An example of a displayable object t
 
         stack.push(model_transform);
         model_transform = mult(model_transform, translation(0, calculateHeight(chemicalEngineering[year]), 0));
-        model_transform = mult(model_transform, translation(time/1000, 0, 0));
+        model_transform = mult(model_transform, translation(x_position, 0, 0));
         shapes_in_use.strip.draw( graphics_state, model_transform, purplePlastic );
         model_transform = stack.pop();
 
@@ -192,11 +202,11 @@ Declare_Any_Class( "Example_Animation",  // An example of a displayable object t
         Civil Engineering
         **********************/
 
-        // stack.push(model_transform);
-        // model_transform = mult(model_transform, translation(0, calculateHeight(0), 0));
+        stack.push(model_transform);
+        model_transform = mult(model_transform, translation(25, 15, 0));
         // model_transform = mult(model_transform, translation(time/1000, 0, 0));
-        // shapes_in_use.strip.draw( graphics_state, model_transform, purplePlastic );
-        // model_transform = stack.pop();
+        shapes_in_use.strip.draw( graphics_state, model_transform, purplePlastic );
+        model_transform = stack.pop();
         /**********************
         Computer Science
         **********************/
